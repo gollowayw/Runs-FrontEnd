@@ -2,7 +2,7 @@ import UserList from "../components/UserLists/UserList";
 
 const DUMMY_DATA = [
   {
-    UserName: "Sam",
+    UserName: "Bob",
     Alias: "BabyBackBusiness",
     image:
       "https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555438427/shape/mentalfloss/picture_0.png",
