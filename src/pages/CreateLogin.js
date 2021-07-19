@@ -1,12 +1,15 @@
 import CreateLoginForm from "../components/UserProfile/CreateLoginForm";
 import { useHistory } from "react-router-dom";
+
 function CreateLogin(props) {
   const history = useHistory();
 
   function CreateLoginHandler(body) {
     console.log("begin create user");
+    console.log(process.env);
+
     fetch(
-      "https://4p2zbyzd1c.execute-api.us-west-2.amazonaws.com/Dev/createlogin",
+      process.env.REACT_APP_API_URL,
 
       {
         method: "POST",
