@@ -4,9 +4,10 @@ import HomePage from "./pages/Home";
 import Layout from "./components/layout/Layout";
 import CreateLogin from "./pages/CreateLogin";
 
-function App() {
+function App(props) {
+  var strPath = "";
   return (
-    <Layout>
+    <Layout location={strPath}>
       <Switch>
         <Route path="/" exact>
           <HomePage />

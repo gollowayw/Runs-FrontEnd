@@ -1,39 +1,40 @@
-import UserList from "../components/UserLists/UserList";
-
-const DUMMY_DATA = [
-  {
-    UserName: "Bob2",
-    Alias: "BabyBackBusiness",
-    image:
-      "https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555438427/shape/mentalfloss/picture_0.png",
-  },
-
-  {
-    UserName: "Raf",
-    Alias: "rmz",
-    image:
-      "https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555438427/shape/mentalfloss/picture_0.png",
-  },
-  {
-    UserName: "Brian",
-    Alias: "LittleChimp",
-    image:
-      "https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555438427/shape/mentalfloss/picture_0.png",
-  },
-  {
-    UserName: "Neil",
-    Alias: "Momento",
-    image:
-      "https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555438427/shape/mentalfloss/picture_0.png",
-  },
-];
+import { useState, useEffect } from "react";
+import UserList from "../components/User_Components/UserLists/UserList";
 
 function AllUsersPage() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadedUsers, setLoadedUsers] = useState([]);
+  useEffect(() => {
+    setIsLoading(true);
+    fetch(process.env.REACT_APP_API_URL + "/RetrieveAllUsers")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setIsLoading(false);
+        setLoadedUsers(data["body"]);
+      });
+  }, []);
+
+  if (isLoading)
+    return (
+      <div className="flex items-vertical justify-center min-h-screen col-span-12">
+        <div className="overflow-auto lg:overflow-visible ">
+          <section>
+            <p>I am trying my best here......</p>
+          </section>
+        </div>
+      </div>
+    );
   return (
-    <section>
-      <header>All Users Page!!!!</header>
-      <UserList users={DUMMY_DATA} />
-    </section>
+    <div className="mt-20">
+      <div className="flex items-vertical justify-center min-h-screen col-span-12">
+        <div className="overflow-auto lg:overflow-visible ">
+          <UserList users={loadedUsers} />
+        </div>
+      </div>
+    </div>
   );
 }
 

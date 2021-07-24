@@ -1,4 +1,4 @@
-import CreateLoginForm from "../components/UserProfile/CreateLoginForm";
+import CreateLoginForm from "../components/User_Components/UserProfile/CreateLoginForm";
 import { useHistory } from "react-router-dom";
 
 function CreateLogin(props) {
@@ -9,7 +9,7 @@ function CreateLogin(props) {
     console.log(process.env);
 
     fetch(
-      process.env.REACT_APP_API_URL,
+      process.env.REACT_APP_API_URL + "/CreateLogin",
 
       {
         method: "POST",
